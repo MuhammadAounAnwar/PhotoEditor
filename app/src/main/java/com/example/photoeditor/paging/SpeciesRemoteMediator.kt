@@ -53,7 +53,7 @@ class SpeciesRemoteMediator(private val iRepository: IRepository, private val ap
                 appDatabase.speciesDao().insertAll(species)
             }
 
-            MediatorResult.Success(endOfPaginationReached = false)
+            MediatorResult.Success(endOfPaginationReached = species.isEmpty())
         } catch (e: IOException) {
             MediatorResult.Error(e)
         } catch (e: HttpException) {
