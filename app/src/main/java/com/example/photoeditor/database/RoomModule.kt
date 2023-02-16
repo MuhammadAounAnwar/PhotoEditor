@@ -18,14 +18,20 @@ object RoomModule {
     @Provides
     fun provideRoom(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
-            context, AppDatabase::class.java, "specie_table"
+            context, AppDatabase::class.java, "specie_database"
         ).fallbackToDestructiveMigration().build()
     }
 
     @Singleton
     @Provides
-    fun provideServersDao(appDatabase: AppDatabase): SpeciesDao {
+    fun provideSpeciesDaoDao(appDatabase: AppDatabase): SpeciesDao {
         return appDatabase.speciesDao()
     }
+
+//    @Singleton
+//    @Provides
+//    fun provideRemoteKeyDaoDao(appDatabase: AppDatabase): RemoteKeyDao {
+//        return appDatabase.remoteKeyDao()
+//    }
 
 }

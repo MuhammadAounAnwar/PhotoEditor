@@ -5,30 +5,41 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.photoeditor.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.photoeditor.databinding.FragmentListBinding
+import com.example.photoeditor.paging.MainLoadStateAdapter
+import com.example.photoeditor.ui.MainAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ListFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ListFragment()
+//    @Inject
+//    lateinit var appDatabase: AppDatabase
+
+    private lateinit var binding: FragmentListBinding
+
+    private val viewModel: ListViewModel by viewModels()
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    private lateinit var viewModel: ListViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val adapter = MainAdapter()
+        binding.rvSpecies.adapter = adapter.withLoadStateFooter(
+            MainLoadStateAdapter()
+        )
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_list, container, false)
+        lifecycleScope.launch {
+            viewModel.data.collectLatest {
+                adapter.submitData(it)
+            }
+        }
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this)[ListViewModel::class.java]
-        // TODO: Use the ViewModel
-    }
-
 }

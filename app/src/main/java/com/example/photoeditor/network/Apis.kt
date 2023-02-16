@@ -1,10 +1,10 @@
 package com.example.photoeditor.network
 
-import com.example.photoeditor.database.SpecieModel
+import com.example.photoeditor.models.SpecieModel
 import retrofit2.Response
 import retrofit2.http.GET
 
 interface Apis {
-    @GET
-    suspend fun getAllSpecies(): Response<SpecieModel>
+    @GET("species")
+    suspend fun getAllSpecies(): Response<List<SpecieModel>>
 }
