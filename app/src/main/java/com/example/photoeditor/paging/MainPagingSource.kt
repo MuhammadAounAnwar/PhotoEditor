@@ -3,8 +3,8 @@ package com.example.photoeditor.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.photoeditor.models.SpecieModel
 import com.example.photoeditor.database.SpeciesDao
+import com.example.photoeditor.models.SpecieModel
 import kotlinx.coroutines.delay
 
 class MainPagingSource(private val dao: SpeciesDao) : PagingSource<Int, SpecieModel>() {

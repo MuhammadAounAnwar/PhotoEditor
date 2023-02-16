@@ -4,22 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.photoeditor.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.update
-
-
-fun FragmentDetailBinding.loadFilteredImage(imageView: ImageView) {
-
-}
-
-fun FragmentDetailBinding.loadImage(view: ImageView, isFilterApplied: Boolean) {
-
-}
 
 fun FragmentDetailBinding.setText(text: String) {
     button.text = text
