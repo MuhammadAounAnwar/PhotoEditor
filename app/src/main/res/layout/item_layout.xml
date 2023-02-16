@@ -20,7 +20,7 @@
 
         <ImageView
             android:id="@+id/ivSpecie"
-            loadPlaceHolderImage="@{image}"
+            loadThumbnail="@{image}"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="24dp"

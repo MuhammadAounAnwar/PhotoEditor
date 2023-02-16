@@ -23,9 +23,7 @@ class MainAdapter(val onItemClick: onItemClick) : PagingDataAdapter<SpecieModel,
     inner class MainViewHolder(val binding: ItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        return MainViewHolder(
-            ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
+        return MainViewHolder(ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
