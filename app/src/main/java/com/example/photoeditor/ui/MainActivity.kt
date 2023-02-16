@@ -1,9 +1,10 @@
-package com.example.photoeditor
+package com.example.photoeditor.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
+import com.example.photoeditor.R
 import com.example.photoeditor.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

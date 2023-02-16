@@ -14,8 +14,17 @@
             type="String" />
 
         <variable
+            name="image"
+            type="String" />
+
+        <variable
             name="filterClickListener"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="viewModel"
+            type="com.example.photoeditor.ui.detail.DetailViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,6 +37,7 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            loadImage="@{image}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.5"

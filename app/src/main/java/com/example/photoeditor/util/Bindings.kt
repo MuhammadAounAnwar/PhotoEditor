@@ -11,6 +11,44 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.photoeditor.R
 
+@BindingAdapter("loadPlaceHolderImage")
+fun loadPlaceHolderImage(view: ImageView, path: String?) {
+    if (path.isNullOrBlank()) {
+        view.setImageResource(R.drawable.ic_place_holder)
+        return
+    }
+    Glide.with(view)
+        .clear(view)
+    Glide.with(view)
+        .load(path)
+        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+        .override(100, 100)
+        .placeholder(R.drawable.ic_place_holder)
+        .addListener(object : RequestListener<Drawable> {
+            override fun onLoadFailed(
+                e: GlideException?,
+                model: Any?,
+                target: Target<Drawable>?,
+                isFirstResource: Boolean
+            ): Boolean {
+                return false
+            }
+
+            override fun onResourceReady(
+                resource: Drawable?,
+                model: Any?,
+                target: Target<Drawable>?,
+                dataSource: DataSource?,
+                isFirstResource: Boolean
+            ): Boolean {
+                view.setImageDrawable(resource)
+                return false
+            }
+
+        })
+        .into(view)
+}
+
 @BindingAdapter("loadImage")
 fun loadImage(view: ImageView, path: String?) {
     if (path.isNullOrBlank()) {
@@ -22,7 +60,7 @@ fun loadImage(view: ImageView, path: String?) {
     Glide.with(view)
         .load(path)
         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-        .override(200, 200)
+//        .override(100, 100)
         .placeholder(R.drawable.ic_place_holder)
         .addListener(object : RequestListener<Drawable> {
             override fun onLoadFailed(

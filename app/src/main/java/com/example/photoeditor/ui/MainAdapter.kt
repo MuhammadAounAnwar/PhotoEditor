@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.photoeditor.models.SpecieModel
 import com.example.photoeditor.databinding.ItemLayoutBinding
+import com.example.photoeditor.models.SpecieModel
 
-class MainAdapter : PagingDataAdapter<SpecieModel, MainAdapter.MainViewHolder>(DIFF_CALLBACK) {
+typealias onItemClick = (specieModel: SpecieModel) -> Unit
+
+class MainAdapter(val onItemClick: onItemClick) : PagingDataAdapter<SpecieModel, MainAdapter.MainViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<SpecieModel>() {
-            override fun areItemsTheSame(oldItem: SpecieModel, newItem: SpecieModel): Boolean =
-                oldItem.id == newItem.id
+            override fun areItemsTheSame(oldItem: SpecieModel, newItem: SpecieModel): Boolean = oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: SpecieModel, newItem: SpecieModel): Boolean =
-                oldItem == newItem
+            override fun areContentsTheSame(oldItem: SpecieModel, newItem: SpecieModel): Boolean = oldItem == newItem
         }
     }
 
@@ -34,6 +34,10 @@ class MainAdapter : PagingDataAdapter<SpecieModel, MainAdapter.MainViewHolder>(D
         holder.binding.apply {
             name = item?.species_name
             image = item?.species_illustration_photo?.src.toString()
+        }
+
+        holder.binding.root.setOnClickListener {
+            item?.let { it1 -> onItemClick.invoke(it1) }
         }
     }
 }

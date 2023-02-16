@@ -18,5 +18,9 @@
         android:id="@+id/detailFragment"
         android:name="com.example.photoeditor.ui.detail.DetailFragment"
         android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="specieModel"
+            app:argType="com.example.photoeditor.models.SpecieModel" />
+    </fragment>
 </navigation>

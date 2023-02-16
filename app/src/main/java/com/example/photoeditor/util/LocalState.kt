@@ -1,4 +1,4 @@
-package com.example.photoeditor.database
+package com.example.photoeditor.util
 
 sealed class LocalState<out Any> {
     object NoState : LocalState<Nothing>()
