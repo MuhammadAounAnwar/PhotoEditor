@@ -37,7 +37,6 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val adapter = MainAdapter()
         binding.rvSpecies.adapter = adapter.withLoadStateFooter(
             MainLoadStateAdapter()
         )

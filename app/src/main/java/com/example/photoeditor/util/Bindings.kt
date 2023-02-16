@@ -58,13 +58,11 @@ fun loadThumbnail(view: ImageView, path: String?) {
         return
     }
 
-//    val thumbnailRequest: RequestBuilder<Drawable> = GlideApp.with(view.context).load(path)
-
     Glide.with(view).clear(view)
     Glide.with(view)
         .load(path)
         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-//        .override(100, 100)
+        .override(60, 60)
         .placeholder(R.drawable.ic_place_holder)
         .thumbnail(0.1f)
         .addListener(object : RequestListener<Drawable> {
